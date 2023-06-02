@@ -6,7 +6,12 @@ const mockRegisterCredentials = {
   name: "John Doe",
   email: "johndoe@mail.com",
   password: "johndoe_password"
-}
+};
+
+const mockLoginCredentials = {
+  email: "johndoe@mail.com",
+  password: "johndoe_password"
+};
 
 describe("GET /v1/auth/whoami", () => {
   let token;
@@ -64,6 +69,34 @@ describe("POST /v1/auth/register", () => {
       
       expect(res.statusCode).toBe(422);
       expect(res.body).toHaveProperty("error");
+    }
+  );
+});
+
+describe("POST /v1/auth/login", () => {
+  beforeAll(async () => {
+    const res = await request(app)
+      .post("/v1/auth/register")
+      .set("Content-Type", "application/json")
+      .send(mockRegisterCredentials);
+    token = res.body.accessToken;
+  });
+
+  afterAll(async () => {
+    await User.destroy({
+      where: { email: mockRegisterCredentials.email },
+    });
+  });
+
+  test("Should return status code 201 with accessToken if login has been successful.",
+    async () => {
+      const res = await request(app)
+        .post("/v1/auth/login")
+        .set("Content-Type", "application/json")
+        .send(mockLoginCredentials);
+      
+      expect(res.statusCode).toBe(201);
+      expect(res.body).toHaveProperty("accessToken");
     }
   );
 });
