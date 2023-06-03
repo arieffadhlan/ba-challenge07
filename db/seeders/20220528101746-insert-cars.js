@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const carnames = [
   "Mazda RX4",
@@ -33,7 +33,7 @@ const carnames = [
   "Ferrari Dino",
   "Maserati Bora",
   "Volvo 142E",
-]
+];
 
 const sizes = ["SMALL", "MEDIUM", "LARGE"];
 
@@ -44,7 +44,7 @@ module.exports = {
     sizes.forEach((size) => {
       cars.push(
         ...carnames.map((name, i) => {
-          const accumulator = i.toLocaleString('en-US', {
+          const accumulator = i.toLocaleString("en-US", {
             minimumIntegerDigits: 2,
             useGrouping: false
           });
@@ -59,14 +59,14 @@ module.exports = {
             isCurrentlyRented: false,
             createdAt: timestamp,
             updatedAt: timestamp,
-          })
+          });
         })
-      )
-    })
-    await queryInterface.bulkInsert('Cars', cars, {})
+      );
+    });
+    await queryInterface.bulkInsert("Cars", cars, {})
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Cars', null, {});
+    await queryInterface.bulkDelete("Cars", null, {});
   }
 };

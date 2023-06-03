@@ -7,9 +7,9 @@
     "start": "node -r dotenv/config bin/www",
     "develop": "nodemon -r dotenv/config bin/www",
     "db:create": "cross-env NODE_ENV=test sequelize db:create",
-    "db:drop": "sequelize db:drop",
+    "db:drop": "cross-env NODE_ENV=test sequelize db:drop",
     "db:migrate": "cross-env NODE_ENV=test sequelize db:migrate",
-    "db:seed": "cross-env NODE_ENV=test sequelize db:seed:undo:all && sequelize db:seed:all",
+    "db:seed": "cross-env NODE_ENV=test sequelize db:seed:undo:all && cross-env NODE_ENV=test sequelize db:seed:all",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles"
   },
   "dependencies": {

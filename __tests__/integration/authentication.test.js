@@ -30,7 +30,7 @@ describe("GET /v1/auth/whoami", () => {
     });
   });
 
-  test("Response should return status code 401 user data.", async () => {
+  test("Should return status code 401 with user data.", async () => {
     const res = await request(app)
       .get("/v1/auth/whoami")
       .set("Content-Type", "application/json")
