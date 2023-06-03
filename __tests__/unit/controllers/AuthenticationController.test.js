@@ -1,7 +1,13 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const AuthenticationController = require("../../../app/controllers/AuthenticationController");
-const { EmailAlreadyTakenError, EmailNotRegisteredError, InsufficientAccessError, RecordNotFoundError, WrongPasswordError } = require("../../../app/errors");
+const {
+  EmailAlreadyTakenError,
+  EmailNotRegisteredError,
+  InsufficientAccessError,
+  RecordNotFoundError,
+  WrongPasswordError
+} = require("../../../app/errors");
 const { Role } = require("../../../app/models");
 const { JWT_SIGNATURE_KEY } = require("../../../config/application");
 const User = {}
@@ -12,12 +18,12 @@ const mockUser = {
   email: "johndoe@mail.com",
   image: "johndoe_image",
   password: "johndoe_password",
-  roleId: 1,
+  roleId: 1
 };
 
 const mockRole = {
   id: 1,
-  name: "COSTUMER",
+  name: "COSTUMER"
 };
 
 const mockUserResponse = {
@@ -27,7 +33,7 @@ const mockUserResponse = {
   encryptedPassword: bcrypt.hashSync(mockUser.password, 10),
   roleId: mockRole.id,
   createdAt: new Date(),
-  updatedAt: new Date(),
+  updatedAt: new Date()
 }
 
 describe("AuthenticationController", () => {  
@@ -54,7 +60,7 @@ describe("AuthenticationController", () => {
       }
     );
 
-    test("Response should return status code 401 with InsufficientAccessError (access forbidden) and json containing error object (name, message, and details).", 
+    test("Response Response should return status code 401 with InsufficientAccessError (access forbidden) and json containing error object (name, message, and details).", 
       () => {
         const token = controller.createTokenFromUser(mockUser, mockRole);
         const req = {
@@ -83,7 +89,7 @@ describe("AuthenticationController", () => {
       }
     );
 
-    test("Response should return status code 401 with error if there is an error.", 
+    test("Response Response should return status code 401 with error if there is an error.", 
       () => {
         const token = controller.createTokenFromUser(mockUser, mockRole);
         const req = {
@@ -106,7 +112,7 @@ describe("AuthenticationController", () => {
   });
 
   describe("handleLogin", () => {
-    test("Should return status code 201 with accessToken if login has been successful.",
+    test("Response Response should return status code 201 with accessToken if login has been successful.",
       async () => {
         const req = {
           body: {
@@ -160,7 +166,7 @@ describe("AuthenticationController", () => {
       }
     );
 
-    test("Should return status code 404 with error if email is not registered.",
+    test("Response Response should return status code 404 with error if email is not registered.",
       async () => {
         const req = {
           body: {
@@ -184,7 +190,7 @@ describe("AuthenticationController", () => {
       }
     );
 
-    test("Should return status code 401 with error if password is incorrect.",
+    test("Response should return status code 401 with error if password is incorrect.",
       async () => {
         const req = {
           body: {
@@ -213,7 +219,7 @@ describe("AuthenticationController", () => {
   });
   
   describe("handleRegister", () => {
-    test("Should return status code 201 with accessToken if register has been successful.",
+    test("Response should return status code 201 with accessToken if register has been successful.",
       async () => {
         const req = {
           body: {
@@ -265,7 +271,7 @@ describe("AuthenticationController", () => {
       }
     );
 
-    test("Should return status code 422 with error if email already taken.",
+    test("Response should return status code 422 with error if email already taken.",
       async () => {
         const req = {
           body: {
@@ -292,7 +298,7 @@ describe("AuthenticationController", () => {
   });
   
   describe("handleGetUser", () => {
-    test("Should return status code 200 with user data.",
+    test("Response should return status code 200 with user data.",
       async () => {
         const req = { user: mockUser };
         const res = {
@@ -310,7 +316,7 @@ describe("AuthenticationController", () => {
       }
     );
 
-    test("Should return status code 404 with error if user record is not found.",
+    test("Response should return status code 404 with error if user record is not found.",
       async () => {
         const req = { user: mockUser };
         const res = {
@@ -328,7 +334,7 @@ describe("AuthenticationController", () => {
       }
     );
 
-    test("Should return status code 404 with error if role is not found.",
+    test("Response should return status code 404 with error if role is not found.",
       async () => {
         const req = { user: mockUser };
         const res = {
@@ -367,7 +373,7 @@ describe("AuthenticationController", () => {
   });
 
   describe("decodeToken", () => {
-    test("Should return payload data if token is verified.", () => {
+    test("Response should return payload data if token is verified.", () => {
       const user = {
         id: 1,
         name: "admin",
@@ -388,7 +394,7 @@ describe("AuthenticationController", () => {
   });
 
   describe("encryptPassword", () => {
-    test("Should return encrypted password.", () => {
+    test("Response should return encrypted password.", () => {
       const encryptedPassword = controller.encryptPassword(mockUser.password);
       const comparePassword = bcrypt.compareSync(mockUser.password, encryptedPassword);
       
@@ -397,14 +403,14 @@ describe("AuthenticationController", () => {
   });
 
   describe("verifyPassword", () => {
-    test("Should return true if password and encryptedPassword match.", () => {
+    test("Response should return true if password and encryptedPassword match.", () => {
       const encryptedPassword = bcrypt.hashSync(mockUser.password);
       const comparePassword = controller.verifyPassword(mockUser.password, encryptedPassword);
       
       expect(comparePassword).toEqual(true);
     });
 
-    test("Should return false if password and encryptedPassword don't match.", () => {
+    test("Response should return false if password and encryptedPassword don't match.", () => {
       const encryptedPassword = bcrypt.hashSync(`${mockUser.password}_incorrect`);
       const comparePassword = controller.verifyPassword(mockUser.password, encryptedPassword);
       

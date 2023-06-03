@@ -30,7 +30,7 @@ describe("GET /v1/auth/whoami", () => {
     });
   });
 
-  test("Should return status code 401 with user data.", async () => {
+  test("Response should return status code 401 with user data.", async () => {
     const res = await request(app)
       .get("/v1/auth/whoami")
       .set("Content-Type", "application/json")
@@ -48,7 +48,7 @@ describe("POST /v1/auth/register", () => {
     });
   });
 
-  test("Should return status code 201 with accessToken if register has been successful.",
+  test("Response should return status code 201 with accessToken if register has been successful.",
     async () => {
       const res = await request(app)
         .post("/v1/auth/register")
@@ -60,7 +60,7 @@ describe("POST /v1/auth/register", () => {
     }
   );
 
-  test("Should return status code 422 with error if email already taken.",
+  test("Response should return status code 422 with error if email already taken.",
     async () => {
       const res = await request(app)
         .post("/v1/auth/register")
@@ -88,7 +88,7 @@ describe("POST /v1/auth/login", () => {
     });
   });
 
-  test("Should return status code 201 with accessToken if login has been successful.",
+  test("Response should return status code 201 with accessToken if login has been successful.",
     async () => {
       const res = await request(app)
         .post("/v1/auth/login")

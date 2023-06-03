@@ -31,7 +31,7 @@ describe("CarController", () => {
   const controller = new CarController({ carModel, userCarModel, dayjs });
   
   describe("handleListCars", () => {
-    test("Should return status code 200 with list cars and meta object if successful getting data.",
+    test("Response should return status code 200 with list cars and meta object if successful getting data.",
       async () => {
         const req = { query: {} };
         const res = {
@@ -62,9 +62,9 @@ describe("CarController", () => {
   });
 
   describe("handleGetCar", () => {
-    test("Should return status code 200 with car data if successful getting data.",
+    test("Response should return status code 200 with car data if successful getting data.",
       async () => {
-        const req = { params: { id: 1} };
+        const req = { params: { id: 1 } };
         const res = {
           status: jest.fn().mockReturnThis(),
           json: jest.fn(),
@@ -81,7 +81,7 @@ describe("CarController", () => {
   });
 
   describe("handleCreateCar", () => {
-    test("Should return status code 201 with car data if successful created car.",
+    test("Response should return status code 201 with car data if successful created car.",
       async () => {
         const req = {
           body: {
@@ -105,7 +105,7 @@ describe("CarController", () => {
       }
     );
 
-    test("Should return status code 422 with error if there is an error.",
+    test("Response should return status code 422 with error if there is an error.",
       async () => {
         const req = {
           body: {
@@ -137,7 +137,7 @@ describe("CarController", () => {
   });
 
   describe("handleRentCar", () => {
-    test("Should return status code 201 with user car data if successful renting a car.",
+    test("Response should return status code 201 with user car data if successful renting a car.",
       async () => {
         const rentStartedAt = new Date();
         const rentEndedAt = dayjs(rentStartedAt).add(1, "day");
@@ -171,7 +171,7 @@ describe("CarController", () => {
       }
     );
 
-    test("Should return status code 422 with error if car already rented.",
+    test("Response should return status code 422 with error if car already rented.",
       async () => {
         const rentStartedAt = new Date();
         const req = {
@@ -222,7 +222,7 @@ describe("CarController", () => {
   });
 
   describe("handleUpdateCar", () => {
-    test("Should return status code 200 with car data if successful updated car.",
+    test("Response should return status code 200 with car data if successful updated car.",
       async () => {
         const req = {
           body: {
@@ -251,7 +251,7 @@ describe("CarController", () => {
       }
     );
 
-    test("Should return status code 422 with error if there is an error.",
+    test("Response should return status code 422 with error if there is an error.",
       async () => {
         const req = {
           body: {
@@ -285,7 +285,7 @@ describe("CarController", () => {
   });
 
   describe("handleDeleteCar", () => {
-    test("Should return status code 204 if successful deleted car.",
+    test("Response should return status code 204 if successful deleted car.",
       async () => {
         const req = { params: { id: 1 } };
         const res = {
@@ -305,7 +305,7 @@ describe("CarController", () => {
   });
 
   describe("getCarFromRequest", () => {
-    test("Should return car data from given request param id.",
+    test("Response should return car data from given request param id.",
       () => {
         const req = { params: { id: 1 } };
         
@@ -318,7 +318,7 @@ describe("CarController", () => {
   });
 
   describe("getListQueryFromRequest", () => {
-    test("Should return query object based on request.",
+    test("Response should return query object based on request.",
       () => {
         const availableAt = new Date();
         const req = {

@@ -44,7 +44,7 @@ const mockUpdatedCar = {
 }
 
 describe("GET /v1/cars", () => {
-  test("Should return status code 200 with list cars and meta object if successful getting data.",
+  test("Response should return status code 200 with list cars and meta object if successful getting data.",
     async () => {
       const res = await request(app).get("/v1/cars");
       
@@ -67,7 +67,7 @@ describe("POST /v1/cars", () => {
     token = res.body.accessToken;
   });
 
-  test("Should return status code 201 with car data if successful created car.",
+  test("Response should return status code 201 with car data if successful created car.",
     async () => {
       const res = await request(app)
         .post("/v1/cars")
@@ -96,7 +96,7 @@ describe("POST /v1/cars/:id/rent", () => {
     token = res.body.accessToken;
   });
   
-  test("Should return status code 201 with user car data if successful renting a car.",
+  test("Response should return status code 201 with user car data if successful renting a car.",
     async () => {
       const res = await request(app)
         .post(`/v1/cars/${carId}/rent`)
@@ -113,7 +113,7 @@ describe("POST /v1/cars/:id/rent", () => {
 describe("GET /v1/cars/:id", () => {
   const carId = 1;
 
-  test("Should return car data from given request param id.", 
+  test("Response should return car data from given request param id.", 
     async () => {
       const res = await request(app)
         .get(`/v1/cars/${carId}`)
@@ -138,7 +138,7 @@ describe("PUT /v1/cars/:id", () => {
     token = res.body.accessToken;
   });
 
-  test("Should return status code 200 with car data if successful updated car.",
+  test("Response should return status code 200 with car data if successful updated car.",
     async () => {
       const res = await request(app)
         .put(`/v1/cars/${carId}`)
@@ -170,7 +170,7 @@ describe("DELETE /v1/cars/:id", () => {
     return car;
   });
 
-  test("Should return status code 204 if successful deleted car.",
+  test("Response should return status code 204 if successful deleted car.",
     async () => {
       const res = await request(app)
         .delete(`/v1/cars/${car.id}`)
