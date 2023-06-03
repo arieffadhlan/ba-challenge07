@@ -1,9 +1,14 @@
-# BCR API
+# Challenge Chapter 7
+Repository ini dibuat untuk memenuhi challenge chapter 7 dari Studi Independen Binar Academy.
 
-Di dalam repository ini terdapat implementasi API dari Binar Car Rental.
-Tugas kalian disini adalah:
-1. Fork repository
-2. Tulis unit test di dalam repository ini menggunakan `jest`.
-3. Coverage minimal 70%
+## Unit Test Coverage
+![unit test coverage](unit-test-coverage.png)
 
-Good luck!
+## Dokumentasi API
+Link deployment dokumentasi API:
+- https://ba-challenge07-production.up.railway.app/documentation/
+
+## Admin
+Data admin yang bisa dipakai untuk operasi CRUD;
+- Email: marieffadhlan@binar.co.id
+- Password: 123456
